@@ -1,17 +1,20 @@
 #!/bin/bash
 
-echo "Hello, World!"
-echo "This is a simple test script."
+#src/test.sh
+EXPECTED="Hello, Test!"
 
-# Example variable
-name="Claude"
-echo "Running test.sh as $name"
+OUTPUT=$(node -e "console.log(require('./src/app')('Test'))")
 
-# Example condition
-if [ -f "test.sh" ]; then
-    echo "test.sh exists in this directory."
+if [ "$OUTPUT" == "$EXPECTED" ]; then
+
+echo "✅ Test passed!"
+
+exit 0
+
 else
-    echo "test.sh not found."
-fi
 
-echo "Test completed successfully."
+echo "❌ Test failed! Expected '$EXPECTED' but got '$OUTPUT'"
+
+exit 1
+
+fi
