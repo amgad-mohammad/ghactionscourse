@@ -1,0 +1,28 @@
+name: push-pr-workflow # name of the workflow
+
+on: # trigger
+  push:
+    branches:
+      - main
+      - "release/**"
+    paths : # filter files
+      - "src/**"  
+  pull_request:
+    branches: 
+      - main
+      - "release/**"
+    paths : # filter files
+      - "src/**"
+
+jobs:
+  test: # job name
+    runs-on: ubuntu-latest # runner
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v7.0.1 # clone repo on the runner(workspace)
+      - name: List Files
+        run: ls -la # run shell command
+      - name: RUN Dependencies
+        run: npm install
+      - name: Run Tests
+        run: npm run test
