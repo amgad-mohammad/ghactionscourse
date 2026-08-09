@@ -1,1 +1,10 @@
-
+# name: Scheduled workflow # name of the workflow
+# on: # trigger
+#   schedule:
+#     - cron : "0 8 * * 1"
+# jobs:
+#     daily-task: # job name
+#       runs-on: ubuntu-latest # runner
+#       steps:
+#         - name: Print Message # step name
+#           run: echo "Running the scheduled task" # run shell command
