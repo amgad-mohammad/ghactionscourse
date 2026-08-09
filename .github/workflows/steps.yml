@@ -1,0 +1,19 @@
+name : Jobs Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  job_1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Message
+        run: |
+          npm install
+          npm run build
+        working-directory: ./tmp  # go to tmp directory then run commands
+        shell: bash # change shell [Powershell,CMD,Python] those are supported by github actions
+        # if we want another shell that is not supported by github actions then we can force it
+      - name: Print ENV
+        run: print %ENV # this will not work by using bash , so we need to use perl
+        shell: perl {0}
