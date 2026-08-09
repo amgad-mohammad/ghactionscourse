@@ -1,22 +1,18 @@
 name: Manual API WorkFlow # name of the workflow
 
 on:
-  repository_dispatch: # allows manual triggering via GitHub UI, CLI (gh workflow run), or REST API
-    types: [incident-report] # u should pass this in the payload of the request
+  repository_dispatch: # can only be triggered via REST API (not GitHub UI or gh workflow run)
+    types: [incident-report] # you must pass this event_type in the API request payload
 
 jobs:
-  habdle-incident: # job name
+  handle-incident: # job name
     runs-on: ubuntu-latest # runner
     steps:
-      - name: Print Indicent Details # step name
-        run: echo "Indicent reported" # run shell command
+      - name: Print Incident Details # step name
+        run: echo "Incident reported" # run shell command
 
-
-#Notes : 
-#1. For manual triggering, you can use the GitHub UI, CLI (gh workflow run), or REST API to trigger the workflow.
-#2. You can also use the inputs to get user input for the workflow
-# for UI , u will see Run workflow button
-# for CLI , u will go with some steps : 
-# authentication -> workflow name -> inputs -> run
-# command : gh auth login && gh workflow run manual.yml --input environment=quality
-# for REST API, u can use curl    
+#Notes:
+#1. repository_dispatch can ONLY be triggered externally via REST API (or gh api), NOT via GitHub UI or gh workflow run
+#2. Payload data arrives as github.event.client_payload, not as workflow_dispatch "inputs"
+#3. Trigger via CLI: gh api repos/OWNER/REPO/dispatches -f event_type=incident-report
+#4. Trigger via REST API: curl -X POST -H "Authorization: token TOKEN" https://api.github.com/repos/OWNER/REPO/dispatches -d '{"event_type":"incident-report"}'
