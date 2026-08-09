@@ -1,0 +1,11 @@
+name: Manual WorkFlow # name of the workflow
+
+on:
+  workflow_dispatch: # allows manual triggering via GitHub UI, CLI (gh workflow run), or REST API
+
+jobs:
+  deploy: # job name
+    runs-on: ubuntu-latest # runner
+    steps:
+      - name: Deploy application # step name
+        run: echo "Deploying the application .." # run shell command
