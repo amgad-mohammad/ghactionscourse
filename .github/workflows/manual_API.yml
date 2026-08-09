@@ -1,1 +1,22 @@
+name: Manual API WorkFlow # name of the workflow
 
+on:
+  repository_dispatch: # allows manual triggering via GitHub UI, CLI (gh workflow run), or REST API
+    types: [incident-report] # u should pass this in the payload of the request
+
+jobs:
+  habdle-incident: # job name
+    runs-on: ubuntu-latest # runner
+    steps:
+      - name: Print Indicent Details # step name
+        run: echo "Indicent reported" # run shell command
+
+
+#Notes : 
+#1. For manual triggering, you can use the GitHub UI, CLI (gh workflow run), or REST API to trigger the workflow.
+#2. You can also use the inputs to get user input for the workflow
+# for UI , u will see Run workflow button
+# for CLI , u will go with some steps : 
+# authentication -> workflow name -> inputs -> run
+# command : gh auth login && gh workflow run manual.yml --input environment=quality
+# for REST API, u can use curl    
