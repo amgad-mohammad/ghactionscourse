@@ -16,3 +16,4 @@ jobs:
 #2. Payload data arrives as github.event.client_payload, not as workflow_dispatch "inputs"
 #3. Trigger via CLI: gh api repos/OWNER/REPO/dispatches -f event_type=incident-report
 #4. Trigger via REST API: curl -X POST -H "Authorization: token TOKEN" https://api.github.com/repos/OWNER/REPO/dispatches -d '{"event_type":"incident-report"}'
+# curl.exe -X POST -H "Authorization: token ########" -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/amgad-mohammad/ghactionscourse/dispatches -d '{\"event_type\":\"incident-report\"}'
