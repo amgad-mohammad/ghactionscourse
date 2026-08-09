@@ -2,6 +2,15 @@ name: Manual WorkFlow # name of the workflow
 
 on:
   workflow_dispatch: # allows manual triggering via GitHub UI, CLI (gh workflow run), or REST API
+    inputs: # inputs for the workflow
+      environment:
+        description: "Environment to deploy to"
+        required: true
+        default: "quality"
+        type: choice
+        options:
+          - quality
+          - production
 
 jobs:
   deploy: # job name
